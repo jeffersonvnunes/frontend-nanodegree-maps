@@ -1,0 +1,21 @@
+{
+  "name": "frontend-nanodegree-maps",
+  "homepage": "https://github.com/jeffersonvnunes/frontend-nanodegree-maps",
+  "authors": [
+    "jefferson.nunes <jeffersonvnunes@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "knockout": "^3.4.2"
+  }
+}
