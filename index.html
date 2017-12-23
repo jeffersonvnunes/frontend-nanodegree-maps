@@ -9,23 +9,28 @@
 </head>
 <body>
 <div class="wrapper">
-    <!-- Sidebar Holder -->
+
     <nav id="sidebar" class="active">
         <div class="sidebar-header">
-            <h3>Bela Vista Neighborhood</h3>
+            <h3>Bela Vista Tops</h3>
         </div>
 
         <label for="filter">Filter</label> <input type="text" id="filter" data-bind="textInput: currentFilter"/>
 
-        <ul class="list-unstyled components" data-bind="foreach: activePointList">
+        <ul class="list-unstyled components" data-bind="visible: hasItem() == false">
             <li>
-                <a data-bind="text: title" href="#"></a>
+                No points found
+            </li>
+        </ul>
+
+        <ul class="list-unstyled components" data-bind="foreach: activePointList, visible: hasItem">
+            <li data-bind="css: { highlighted: clicked }">
+                <a data-bind="text: title, click: highlightMarker" href="#"></a>
             </li>
         </ul>
 
     </nav>
 
-    <!-- Page Content Holder -->
     <div id="content" class="container">
         <div class="row row-nav">
             <nav class="navbar navbar-default">
@@ -48,15 +53,6 @@
         </section>
     </div>
 </div>
-
-
-<script>
-
-</script>
-
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWYSOL7cuv__BEQetmA0rWVAI73ZbJalk&v=3&callback=initMap">
-</script>
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

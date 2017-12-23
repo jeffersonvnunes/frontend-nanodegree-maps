@@ -4,62 +4,70 @@ $(document).ready(function () {
     });
 });
 
-var map;
-var pointVM = new ViewModel();
+var map,
+    keyGoogleAPI = 'XXX',
+    clientIDFoursquare = 'XXX',
+    keyFoursquare = 'XXX',
+    initialPointsList = [],
+    neighLat = -23.5590687,
+    neighLng = -46.6499476,
+    pointVM = new ViewModel();
+
+$.getJSON('https://api.foursquare.com/v2/venues/explore?ll='+neighLat+'+,'+neighLng+'&intent=match&v=20170801&section=topPicks&client_id='+clientIDFoursquare+'&client_secret='+keyFoursquare)
+    .done(function(data) {
+        var items = data.response.groups[0] ? data.response.groups[0].items : [];
+
+        var item;
+        for (var i = 0; i < items.length; i++) {
+            item = items[i];
+
+            initialPointsList.push({
+                title: item.venue.name,
+                id: item.venue.id,
+                lat: item.venue.location.lat,
+                lng: item.venue.location.lng,
+                tips: item.tips
+            });
+        }
+
+        initialPointsList = initialPointsList.sort(function (a, b) {
+            if (a.title > b.title) {
+                return 1;
+            }
+            if (a.title < b.title) {
+                return -1;
+            }
+            return 0;
+        });
+
+        pointVM.initPointlist(initialPointsList);
+
+    }).fail(function (error) {
+
+
+    });
 
 function initMap() {
-    // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -23.5590687, lng: -46.6499476},
-        zoom: 16
+        center: {lat: neighLat, lng: neighLng},
+        zoom: 15
     });
     pointVM.map = map;
     pointVM.initPointlist(initialPointsList);
+
+    var script = document.getElementById('MAP');
+    document.body.removeChild(script);
 }
 
-var initialPointsList = [];
+function dynamicallyLoadScript() {
+    var script = document.createElement("script");
+    script.id = 'MAP';
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=' + keyGoogleAPI + '&v=3&callback=initMap';
 
-initialPointsList.push({
-    title: 'Master Supermercados',
-    type: 'market',
-    lat: -23.5582031,
-    lng: -46.6495399
-});
+    document.body.appendChild(script);
+}
 
-initialPointsList.push({
-    title: 'Carrefour Express Brigadeiro Bela Vista',
-    type: 'market',
-    lat: -23.5643845,
-    lng: -46.6508478
-});
-
-initialPointsList.push({
-    title: 'Supermercado Dia',
-    type: 'market',
-    lat: -23.5589905,
-    lng: -46.6524734
-});
-
-initialPointsList.push({
-    title: 'Outback Steakhouse',
-    type: 'restaurant',
-    lat: -23.55371,
-    lng: -46.655274
-});
-
-initialPointsList.push({
-    title: 'Rancho Nordestino',
-    type: 'restaurant',
-    lat: -23.5554258,
-    lng: -46.6479601
-});
-
-initialPointsList.push({
-    title: 'Itália Mia',
-    type: 'restaurant',
-    lat: -23.5586049,
-    lng: -46.6477909
-});
+dynamicallyLoadScript();
 
 
 ko.applyBindings(pointVM);

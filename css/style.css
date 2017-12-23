@@ -149,3 +149,8 @@ body {
 .row-nav {
     height: 10%;
 }
+
+.highlighted {
+    color: #7386D5;
+    background: #fff;
+}

@@ -4,6 +4,9 @@ var Point = function (data) {
     self.type = ko.observable(data.type);
     self.lat = ko.observable(data.lat);
     self.lng = ko.observable(data.lng);
+    self.clicked = ko.observable(false);
+    self.tips = data.tips;
+    self.id = data.id;
 
     self.position = function () {
         return {
