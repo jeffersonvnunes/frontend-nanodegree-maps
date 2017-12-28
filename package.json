@@ -1,0 +1,33 @@
+{
+  "name": "frontend-nanodegree-maps",
+  "version": "1.0.0",
+  "description": "Projec for Udacity front-end nanodegree",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffersonvnunes/frontend-nanodegree-maps.git"
+  },
+  "author": "Jefferson V Nunes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffersonvnunes/frontend-nanodegree-maps/issues"
+  },
+  "homepage": "https://github.com/jeffersonvnunes/frontend-nanodegree-maps#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "knockout": "^3.4.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.21.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-usemin": "^0.3.28",
+    "pump": "^2.0.0"
+  }
+}
