@@ -8,58 +8,58 @@
     <link rel="stylesheet" href="css/style.min.css"/>
 </head>
 <body>
-<div class="wrapper">
+    <div class="wrapper">
 
-    <nav id="sidebar" class="active">
-        <div class="sidebar-header">
-            <h3>Bela Vista Tops by Foursquare</h3>
-        </div>
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <h3>Bela Vista Tops by Foursquare</h3>
+            </div>
 
-        <label for="filter">Filter</label> <input type="text" id="filter" data-bind="textInput: currentFilter"/>
+            <label for="filter">Filter</label> <input type="text" id="filter" data-bind="textInput: currentFilter"/>
 
-        <ul class="list-unstyled components" data-bind="visible: hasItem() == false">
-            <li>
-                No points found
-            </li>
-        </ul>
+            <ul class="list-unstyled components" data-bind="visible: hasItem() == false">
+                <li>
+                    No points found
+                </li>
+            </ul>
 
-        <ul class="list-unstyled components" data-bind="foreach: activePointList, visible: hasItem">
-            <li data-bind="css: { highlighted: clicked }">
-                <a data-bind="text: title, click: highlightMarker" href="#"></a>
-            </li>
-        </ul>
+            <ul class="list-unstyled components scrollable" data-bind="foreach: activePointList, visible: hasItem">
+                <li data-bind="css: { highlighted: clicked }">
+                    <a data-bind="text: title, click: highlightMarker" href="#"></a>
+                </li>
+            </ul>
 
-    </nav>
+        </nav>
 
-    <div id="content" class="container">
-        <div class="row row-nav">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
+        <div id="content" class="container">
+            <div class="row row-nav">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
 
-                    <div class="navbar-header">
-                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                            <i class="glyphicon glyphicon-menu-hamburger"></i>
-                        </button>
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                <i class="glyphicon glyphicon-menu-hamburger"></i>
+                            </button>
+                            <span data-bind="text: googleErrorMessage() + (googleErrorMessage() !== '' ? ' - ' + foursquareErrorMessage() : foursquareErrorMessage())"></span>
+                        </div>
+
                     </div>
+                </nav>
+            </div>
+
+            <section class="row row-map">
+                <div class="col-xs-12" id="map">
 
                 </div>
-            </nav>
+            </section>
         </div>
-
-        <section class="row row-map">
-            <div class="col-xs-12" id="map">
-
-            </div>
-        </section>
     </div>
-</div>
 
-<script src="js/vendor/jquery.js"></script>
-<script src="js/vendor/bootstrap.js"></script>
-<script src="js/vendor/knockout.js"></script>
-<script src="js/scripts.min.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/knockout.js"></script>
+    <script src="js/scripts.min.js"></script>
 
-<script src="js/app.min.js"></script>
-
+    <script src="js/app.min.js"></script>
 </body>
 </html>

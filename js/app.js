@@ -16,6 +16,8 @@ var map,
 //Call Foursquare API and build the venues menu with the response
 $.getJSON('https://api.foursquare.com/v2/venues/explore?ll='+neighLat+'+,'+neighLng+'&intent=match&v=20170801&section=topPicks&client_id='+clientIDFoursquare+'&client_secret='+keyFoursquare)
     .done(function(data) {
+        pointVM.foursquareErrorMessage('');
+
         var items = data.response.groups[0] ? data.response.groups[0].items : [];
 
         var item;
@@ -44,11 +46,13 @@ $.getJSON('https://api.foursquare.com/v2/venues/explore?ll='+neighLat+'+,'+neigh
         pointVM.initPointlist(initialPointsList);
 
     }).fail(function (error) {
-        console.log('Could not load Foursquare data. Code: ' + error.status + ' text: ' + error.statusText);
+        pointVM.foursquareErrorMessage('Foursquare data could not be loaded');
     });
 
 //Function for callback on the load of google map
 function initMap() {
+    pointVM.googleErrorMessage('');
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: neighLat, lng: neighLng},
         zoom: 15
@@ -66,6 +70,9 @@ function dynamicallyLoadScript() {
     script.setAttribute('async', '');
     script.id = 'MAP';
     script.src = 'https://maps.googleapis.com/maps/api/js?key=' + keyGoogleAPI + '&v=3&callback=initMap';
+    script.onerror  = function () {
+        pointVM.googleErrorMessage('Google map could not be loaded');
+    };
 
     document.body.appendChild(script);
 }

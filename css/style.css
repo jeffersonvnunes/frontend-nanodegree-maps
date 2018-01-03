@@ -1,4 +1,4 @@
-/*Side menu based on exemples of https://bootstrapious.com/p/bootstrap-sidebar*/
+/*The Side menu was based on exemples of https://bootstrapious.com/p/bootstrap-sidebar*/
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
@@ -55,6 +55,7 @@ a, a:hover, a:focus {
 #sidebar ul.components {
     padding: 20px 0;
     border-bottom: 1px solid #47748b;
+    max-height: 75%;
 }
 
 #sidebar ul p {
@@ -144,4 +145,9 @@ body {
 .highlighted {
     color: #7386D5;
     background: #fff;
+}
+
+.scrollable {
+    overflow: hidden;
+    overflow-y: auto;
 }

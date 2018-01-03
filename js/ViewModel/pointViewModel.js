@@ -4,6 +4,8 @@ var ViewModel = function () {
 
     self.pointList = ko.observableArray([]);
     self.hasItem = ko.observable(false);
+    self.foursquareErrorMessage = ko.observable('');
+    self.googleErrorMessage = ko.observable('');
 
     //Populate initialPointsList with google map makers
     self.initPointlist = function (initialPointsList) {
